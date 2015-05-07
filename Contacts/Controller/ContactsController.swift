@@ -14,6 +14,9 @@ class ContactsController
 	var objects: [Contact] = [Contact]()
 	var importantCache: [ABRecordID] = [ABRecordID]()
 	
+	let startOfDayTime: Int = 8
+	let endOfDayTime: Int = 18
+	
 	func updateContacts(contacts: [Contact])
 	{
 		// Sort by date
@@ -23,7 +26,17 @@ class ContactsController
 		
 		for contact in objects
 		{
-			importantCache.append(contact.id)
+			if let createdDate = contact.created
+			{
+				let isWeekend = createdDate.isWeekend()
+				let isDaytime = createdDate.isBetweenTime(start: startOfDayTime, end: endOfDayTime)
+				
+				if isWeekend {
+					importantCache.append(contact.id)
+				} else if !isDaytime {
+					importantCache.append(contact.id)
+				}
+			}
 		}
 	}
 	
