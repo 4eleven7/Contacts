@@ -47,4 +47,24 @@ class AddressBookHelper
 		
 		return authorised
 	}
+	
+	func getContacts() -> [Contact]
+	{
+		var allPeople: NSArray = ABAddressBookCopyArrayOfAllPeople(addressBook).takeRetainedValue() as NSArray
+		var contacts = [Contact]()
+		
+		for record in allPeople
+		{
+			var contact = createContact(record)
+			contacts.append(contact)
+		}
+		
+		return contacts
+	}
+	
+	func createContact(record: ABRecordRef) -> Contact
+	{
+		var contact: Contact = Contact()
+		return contact
+	}
 }
