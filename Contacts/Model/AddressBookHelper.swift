@@ -67,9 +67,18 @@ class AddressBookHelper
 		var contact: Contact = Contact()
 		contact.id = ABRecordGetRecordID(record)
 		
-		var firstName = ABRecordCopyValue(record, kABPersonFirstNameProperty)?.takeRetainedValue() as? String
-		var lastName = ABRecordCopyValue(record, kABPersonFirstNameProperty)?.takeRetainedValue() as? String
-		contact.name = (firstName == nil ? "" : firstName!) + (lastName == nil ? "" : lastName!)
+		// Composite returns a concatenated value of multiple properties, such as prefix, suffix, first and last name.
+		// As a backup we construct our own, using first and/or last name.
+		if let name = ABRecordCopyCompositeName(record)?.takeRetainedValue() as? String
+		{
+			contact.name = name as String
+		}
+		else
+		{
+			var firstName = ABRecordCopyValue(record, kABPersonFirstNameProperty)?.takeRetainedValue() as? String
+			var lastName = ABRecordCopyValue(record, kABPersonFirstNameProperty)?.takeRetainedValue() as? String
+			contact.name = (firstName == nil ? "" : firstName!) + (lastName == nil ? "" : lastName!)
+		}
 		
 		var createdDate = ABRecordCopyValue(record, kABPersonCreationDateProperty)?.takeRetainedValue() as? NSDate
 		contact.created = createdDate
