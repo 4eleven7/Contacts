@@ -13,7 +13,7 @@ import AddressBookUI
 class MasterViewController: UITableViewController
 {
 	var helper: AddressBookHelper = AddressBookHelper()
-	var contacts: [Contact]?
+	var contacts: ContactsController = ContactsController()
 	
 	override func awakeFromNib()
 	{
@@ -34,7 +34,7 @@ class MasterViewController: UITableViewController
 		if helper.checkAuthorizationStatus()
 		{
 			let objects = helper.getContacts()
-			contacts = objects
+			contacts.updateContacts(objects)
 		}
 		else
 		{
@@ -56,15 +56,14 @@ class MasterViewController: UITableViewController
 	
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
-		return contacts!.count
+		return contacts.numberOfContacts(showNonImportant: false)
 	}
 	
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
 	{
 		let cell = tableView.dequeueReusableCellWithIdentifier("UITableViewCell") as! UITableViewCell
 		
-		let contact = contacts![indexPath.row]
-		
+		let contact = contacts.contactAtIndex(indexPath.row, includeNonImportant: false)
 		cell.textLabel?.text = contact.name
 		
 		return cell
