@@ -68,11 +68,12 @@ class MasterViewController: UITableViewController
 		
 		var isWeekend = contact.created!.isWeekend()
 		var isDaytime = contact.created!.isBetweenTime()
-		var timeStringTest = "weekend \(isWeekend) isDaytime \(isDaytime)"
+		var timeStringTest = "\(contact.created!) weekend \(isWeekend) isDaytime \(isDaytime)"
 		cell.detailTextLabel?.text = timeStringTest
 		
 		return cell
 	}
+	
 	
 	// MARK: UITableViewDelegate
 	

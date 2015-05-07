@@ -14,8 +14,8 @@ class ContactsController
 	var objects: [Contact] = [Contact]()
 	var importantCache: [ABRecordID] = [ABRecordID]()
 	
-	let startOfDayTime: Int = 8
-	let endOfDayTime: Int = 18
+	var startOfDayTime: Int = 8
+	var endOfDayTime: Int = 18
 	
 	func updateContacts(contacts: [Contact])
 	{
@@ -33,7 +33,8 @@ class ContactsController
 				
 				if isWeekend {
 					importantCache.append(contact.id)
-				} else if !isDaytime {
+				}
+				else if !isDaytime {
 					importantCache.append(contact.id)
 				}
 			}
