@@ -11,18 +11,23 @@ import AddressBook
 
 class ContactsController
 {
+	var objects: [Contact] = [Contact]()
+	
 	func updateContacts(contacts: [Contact])
 	{
-		
+		// Sort by date
+		objects = contacts.sorted {
+			return $0.created?.timeIntervalSince1970 > $1.created?.timeIntervalSince1970
+		}
 	}
 	
 	func numberOfContacts(showNonImportant: Bool = true) -> Int
 	{
-		return 0
+		return objects.count
 	}
 	
 	func contactAtIndex(index: Int, includeNonImportant: Bool = true) -> Contact
 	{
-		return Contact()
+		return objects[index]
 	}
 }
