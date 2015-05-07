@@ -62,6 +62,16 @@ class AddressBookHelper
 		return contacts
 	}
 	
+	func getViewControllerForContact(id: ABRecordID) -> ABPersonViewController
+	{
+		let record: ABRecordRef = ABAddressBookGetPersonWithRecordID(addressBook, id).takeRetainedValue() as ABRecordRef
+		
+		let personViewController = ABPersonViewController()
+		personViewController.displayedPerson = record
+		
+		return personViewController
+	}
+	
 	func createContact(record: ABRecordRef) -> Contact
 	{
 		var contact: Contact = Contact()

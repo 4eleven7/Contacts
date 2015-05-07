@@ -73,6 +73,9 @@ class MasterViewController: UITableViewController
 	
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
 	{
+		let contact = contacts.contactAtIndex(indexPath.row, includeNonImportant: false)
 		
+		let personViewController = helper.getViewControllerForContact(contact.id)
+		navigationController?.pushViewController(personViewController, animated: true)
 	}
 }
