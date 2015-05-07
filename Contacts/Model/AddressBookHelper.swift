@@ -80,6 +80,10 @@ class AddressBookHelper
 			contact.name = (firstName == nil ? "" : firstName!) + (lastName == nil ? "" : lastName!)
 		}
 		
+		// Some properties can have mutliple values, eg. a work and personal phone number.
+		contact.phone = getMultipleValues(record, kABPersonPhoneProperty)
+		contact.email = getMultipleValues(record, kABPersonEmailProperty)
+		
 		var createdDate = ABRecordCopyValue(record, kABPersonCreationDateProperty)?.takeRetainedValue() as? NSDate
 		contact.created = createdDate
 		
@@ -87,5 +91,28 @@ class AddressBookHelper
 		contact.modified = modifiedDate
 		
 		return contact
+	}
+	
+	func getMultipleValues(record: ABRecordRef, _ property: ABPropertyID) -> [String]?
+	{
+		if let values: ABMultiValueRef? = ABRecordCopyValue(record, property)?.takeRetainedValue()
+		{
+			var results: [String] = []
+			
+			for i in 0 ..< ABMultiValueGetCount(values)
+			{
+				//var label = ABMultiValueCopyLabelAtIndex(values, i)?.takeRetainedValue() as? String
+				var value = ABMultiValueCopyValueAtIndex(values, i)?.takeRetainedValue() as? NSString
+				//println("\(label)\(suffix)")
+				
+				if value != nil {
+					results.append(value! as String)
+				}
+			}
+			
+			return results
+		}
+		
+		return nil
 	}
 }
