@@ -15,6 +15,8 @@ class MasterViewController: UITableViewController
 	var helper: AddressBookHelper = AddressBookHelper()
 	var contacts: ContactsController = ContactsController()
 	
+	@IBOutlet var filter: UISegmentedControl!
+	
 	override func awakeFromNib()
 	{
 		super.awakeFromNib()
@@ -47,6 +49,18 @@ class MasterViewController: UITableViewController
 		// TODO contacts permission settings prompt
 	}
 	
+	func includeNonImportant() -> Bool
+	{
+		return filter.selectedSegmentIndex == 0
+	}
+	
+	// MARK: IBActions
+	
+	@IBAction func switchFilters()
+	{
+		tableView.reloadData()
+	}
+	
 	// MARK: UITableViewDataSource
 	
 	override func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -56,14 +70,14 @@ class MasterViewController: UITableViewController
 	
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
 	{
-		return contacts.numberOfContacts(showNonImportant: false)
+		return contacts.numberOfContacts(showNonImportant: includeNonImportant())
 	}
 	
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
 	{
 		let cell = tableView.dequeueReusableCellWithIdentifier("UITableViewCell") as! UITableViewCell
 		
-		let contact = contacts.contactAtIndex(indexPath.row, includeNonImportant: false)
+		let contact = contacts.contactAtIndex(indexPath.row, includeNonImportant: includeNonImportant())
 		cell.textLabel?.text = contact.name
 		
 		var isWeekend = contact.created!.isWeekend()
@@ -79,7 +93,7 @@ class MasterViewController: UITableViewController
 	
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
 	{
-		let contact = contacts.contactAtIndex(indexPath.row, includeNonImportant: false)
+		let contact = contacts.contactAtIndex(indexPath.row, includeNonImportant: includeNonImportant())
 		
 		let personViewController = helper.getViewControllerForContact(contact.id)
 		navigationController?.pushViewController(personViewController, animated: true)
