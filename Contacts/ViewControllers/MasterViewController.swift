@@ -66,6 +66,11 @@ class MasterViewController: UITableViewController
 		let contact = contacts.contactAtIndex(indexPath.row, includeNonImportant: false)
 		cell.textLabel?.text = contact.name
 		
+		var isWeekend = contact.created!.isWeekend()
+		var isDaytime = contact.created!.isBetweenTime()
+		var timeStringTest = "weekend \(isWeekend) isDaytime \(isDaytime)"
+		cell.detailTextLabel?.text = timeStringTest
+		
 		return cell
 	}
 	
