@@ -16,6 +16,11 @@ class ContactsController
 		
 	}
 	
+	func numberOfContacts(showNonImportant: Bool = true) -> Int
+	{
+		return 0
+	}
+	
 	func contactAtIndex(index: Int, includeNonImportant: Bool = true) -> Contact
 	{
 		return Contact()
