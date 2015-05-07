@@ -15,6 +15,7 @@
 		794B0E9B1AFBA38F0040F672 /* AddressBookHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B0E9A1AFBA38F0040F672 /* AddressBookHelper.swift */; };
 		794B0E9D1AFBA45D0040F672 /* ContactObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B0E9C1AFBA45D0040F672 /* ContactObject.swift */; };
 		794B0EA01AFBA5FD0040F672 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B0E9F1AFBA5FD0040F672 /* MasterViewController.swift */; };
+		794B0EA31AFBA7310040F672 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B0EA21AFBA7310040F672 /* ContactsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		794B0E9A1AFBA38F0040F672 /* AddressBookHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBookHelper.swift; sourceTree = "<group>"; };
 		794B0E9C1AFBA45D0040F672 /* ContactObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactObject.swift; sourceTree = "<group>"; };
 		794B0E9F1AFBA5FD0040F672 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		794B0EA21AFBA7310040F672 /* ContactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				794B0E571AEFDB970040F672 /* AppDelegate.swift */,
+				794B0EA11AFBA7310040F672 /* Controller */,
 				794B0E991AFBA3860040F672 /* Model */,
 				794B0E9E1AFBA5FD0040F672 /* ViewControllers */,
 				794B0E5D1AEFDB970040F672 /* Main.storyboard */,
@@ -133,6 +136,15 @@
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
+		};
+		794B0EA11AFBA7310040F672 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				794B0EA21AFBA7310040F672 /* ContactsController.swift */,
+			);
+			name = Controller;
+			path = Contacts/Controller;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -235,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				794B0EA01AFBA5FD0040F672 /* MasterViewController.swift in Sources */,
+				794B0EA31AFBA7310040F672 /* ContactsController.swift in Sources */,
 				794B0E9D1AFBA45D0040F672 /* ContactObject.swift in Sources */,
 				794B0E581AEFDB970040F672 /* AppDelegate.swift in Sources */,
 				794B0E9B1AFBA38F0040F672 /* AddressBookHelper.swift in Sources */,
