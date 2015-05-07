@@ -65,6 +65,18 @@ class AddressBookHelper
 	func createContact(record: ABRecordRef) -> Contact
 	{
 		var contact: Contact = Contact()
+		contact.id = ABRecordGetRecordID(record)
+		
+		var firstName = ABRecordCopyValue(record, kABPersonFirstNameProperty)?.takeRetainedValue() as? String
+		var lastName = ABRecordCopyValue(record, kABPersonFirstNameProperty)?.takeRetainedValue() as? String
+		contact.name = (firstName == nil ? "" : firstName!) + (lastName == nil ? "" : lastName!)
+		
+		var createdDate = ABRecordCopyValue(record, kABPersonCreationDateProperty)?.takeRetainedValue() as? NSDate
+		contact.created = createdDate
+		
+		var modifiedDate = ABRecordCopyValue(record, kABPersonModificationDateProperty)?.takeRetainedValue() as? NSDate
+		contact.modified = modifiedDate
+		
 		return contact
 	}
 }
