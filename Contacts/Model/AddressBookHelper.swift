@@ -115,4 +115,10 @@ class AddressBookHelper
 		
 		return nil
 	}
+	
+	// TODO: Stubbed, do I need to access photos?
+	func getPhoto(record: ABRecordRef) -> UIImage?
+	{
+		return nil
+	}
 }
