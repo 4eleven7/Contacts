@@ -64,7 +64,7 @@ class AddressBookHelper
 	
 	func getViewControllerForContact(id: ABRecordID) -> ABPersonViewController
 	{
-		let record: ABRecordRef = ABAddressBookGetPersonWithRecordID(addressBook, id).takeRetainedValue() as ABRecordRef
+		let record: ABRecordRef = ABAddressBookGetPersonWithRecordID(addressBook, id).takeUnretainedValue() as ABRecordRef
 		
 		let personViewController = ABPersonViewController()
 		personViewController.displayedPerson = record
