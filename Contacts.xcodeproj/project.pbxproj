@@ -17,6 +17,7 @@
 		794B0EA01AFBA5FD0040F672 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B0E9F1AFBA5FD0040F672 /* MasterViewController.swift */; };
 		794B0EA31AFBA7310040F672 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B0EA21AFBA7310040F672 /* ContactsController.swift */; };
 		794B0EA61AFBA8BD0040F672 /* NSDate+LongAgo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794B0EA51AFBA8BD0040F672 /* NSDate+LongAgo.swift */; };
+		795E763D1B00E88800D7A1A1 /* ContactTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795E763C1B00E88800D7A1A1 /* ContactTableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		794B0E9F1AFBA5FD0040F672 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		794B0EA21AFBA7310040F672 /* ContactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
 		794B0EA51AFBA8BD0040F672 /* NSDate+LongAgo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+LongAgo.swift"; sourceTree = "<group>"; };
+		795E763C1B00E88800D7A1A1 /* ContactTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				794B0EA41AFBA8BD0040F672 /* Extensions */,
 				794B0E991AFBA3860040F672 /* Model */,
 				794B0E9E1AFBA5FD0040F672 /* ViewControllers */,
+				795E763B1B00E87400D7A1A1 /* Views */,
 				794B0E5D1AEFDB970040F672 /* Main.storyboard */,
 				794B0E601AEFDB970040F672 /* Images.xcassets */,
 				794B0E621AEFDB970040F672 /* LaunchScreen.xib */,
@@ -155,6 +158,14 @@
 				794B0EA51AFBA8BD0040F672 /* NSDate+LongAgo.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		795E763B1B00E87400D7A1A1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				795E763C1B00E88800D7A1A1 /* ContactTableCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +273,7 @@
 				794B0EA61AFBA8BD0040F672 /* NSDate+LongAgo.swift in Sources */,
 				794B0E9D1AFBA45D0040F672 /* ContactObject.swift in Sources */,
 				794B0E581AEFDB970040F672 /* AppDelegate.swift in Sources */,
+				795E763D1B00E88800D7A1A1 /* ContactTableCell.swift in Sources */,
 				794B0E9B1AFBA38F0040F672 /* AddressBookHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
