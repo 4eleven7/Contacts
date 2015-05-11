@@ -46,4 +46,20 @@ extension NSDate
 		var referenceDate: NSDate = calendar.dateFromComponents(components)!
 		return self.compare(referenceDate) == NSComparisonResult.OrderedDescending
 	}
+	
+	// MARK: To string
+	
+	func dateString() -> String
+	{
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.dateFormat = "dd MMM HH:mm"
+		return dateFormatter.stringFromDate(self)
+	}
+	
+	func friendlyDayString() -> String
+	{
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.dateFormat = "EEEE"
+		return dateFormatter.stringFromDate(self)
+	}
 }
