@@ -32,4 +32,18 @@ extension NSDate
 		return calendar.isDate(self, equalToDate: date, toUnitGranularity: NSCalendarUnit.CalendarUnitWeekOfYear)
 	}
 	
+	func isLastWeek() -> Bool
+	{
+		let dayFlags: NSCalendarUnit = NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitWeekday
+		let calendar: NSCalendar = NSCalendar.currentCalendar()
+		
+		var components: NSDateComponents = calendar.components(dayFlags, fromDate: NSDate())
+		components.hour = 0
+		components.minute = 0
+		components.second = 0
+		components.day -= 8
+		
+		var referenceDate: NSDate = calendar.dateFromComponents(components)!
+		return self.compare(referenceDate) == NSComparisonResult.OrderedDescending
+	}
 }
