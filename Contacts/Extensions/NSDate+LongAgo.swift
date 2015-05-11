@@ -62,4 +62,55 @@ extension NSDate
 		dateFormatter.dateFormat = "EEEE"
 		return dateFormatter.stringFromDate(self)
 	}
+	
+	func toHumanisedString() -> String
+	{
+		let dayFlags: NSCalendarUnit = NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitWeekday
+		let hourFlags: NSCalendarUnit = NSCalendarUnit.CalendarUnitHour
+		let calendar: NSCalendar = NSCalendar.currentCalendar()
+		
+		// Is today?
+		if calendar.isDateInToday(self)
+		{
+			let hourComponent = calendar.components(hourFlags, fromDate: self)
+			if hourComponent.hour < 4 {
+				return NSLocalizedString("Last night", comment: "Date added between midnight and 4am")
+			}
+			else if hourComponent.hour > 4 && hourComponent.hour < 8 {
+				return NSLocalizedString("This morning", comment: "Date added after 4am, before 8am")
+			}
+			else {
+				return NSLocalizedString("Today", comment: "Date added after 8am")
+			}
+		}
+		
+		// Was it Yesterday?
+		if calendar.isDateInYesterday(self)
+		{
+			let hourComponent = calendar.components(hourFlags, fromDate: self)
+			if hourComponent.hour > 20 {
+				return NSLocalizedString("Last night", comment: "Date added after 8pm yesterday")
+			}
+			else if hourComponent.hour > 4 && hourComponent.hour < 8 {
+				return NSLocalizedString("Yesterday morning", comment: "Date added after 4am, before 8am yesterday")
+			}
+			else {
+				return NSLocalizedString("Yesterday", comment: "Date added after 8am yesterday")
+			}
+		}
+		
+		// Was it this week?
+		if self.isSameWeekAsDate(NSDate())
+		{
+			return self.friendlyDayString()
+		}
+		
+		// Was it last week?
+		if self.isLastWeek()
+		{
+			return NSLocalizedString("Last %@", value: self.friendlyDayString(), comment: "A day last week, last {day name}, Last thursday")
+		}
+		
+		return self.dateString()
+	}
 }
