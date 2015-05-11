@@ -40,20 +40,6 @@ class ContactsController
 		}
 	}
 	
-	func isDateWeekend(date: NSDate) -> Bool
-	{
-		return weekendIsImportant && date.isWeekend()
-	}
-	
-	func isDateInDaytime(date: NSDate) -> Bool
-	{
-		if startOfDayTime == 0 && endOfDayTime == 0 {
-			return false
-		}
-		
-		return date.isBetweenTime(start: startOfDayTime, end: endOfDayTime)
-	}
-	
 	func numberOfContacts(showNonImportant: Bool = true) -> Int
 	{
 		if showNonImportant {
@@ -97,5 +83,19 @@ class ContactsController
 		}
 		
 		return requiresUpdate
+	}
+	
+	func isDateWeekend(date: NSDate) -> Bool
+	{
+		return weekendIsImportant && date.isWeekend()
+	}
+	
+	func isDateInDaytime(date: NSDate) -> Bool
+	{
+		if startOfDayTime == 0 && endOfDayTime == 0 {
+			return false
+		}
+		
+		return date.isBetweenTime(start: startOfDayTime, end: endOfDayTime)
 	}
 }
