@@ -75,15 +75,18 @@ class MasterViewController: UITableViewController
 	
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
 	{
-		let cell = tableView.dequeueReusableCellWithIdentifier("UITableViewCell") as! UITableViewCell
+		let cell = tableView.dequeueReusableCellWithIdentifier("ContactTableCell") as! ContactTableCell
 		
 		let contact = contacts.contactAtIndex(indexPath.row, includeNonImportant: includeNonImportant())
-		cell.textLabel?.text = contact.name
+		cell.contactNameLabel?.text = contact.name
 		
 		var isWeekend = contact.created!.isWeekend()
 		var isDaytime = contact.created!.isBetweenTime()
 		var timeStringTest = "\(contact.created!) weekend \(isWeekend) isDaytime \(isDaytime)"
-		cell.detailTextLabel?.text = timeStringTest
+		cell.dateTextLabel?.text = timeStringTest
+		
+		cell.contactMethodOne?.hidden = contact.phone?.count == 0
+		cell.contactMethodTwo?.hidden = contact.email?.count == 0
 		
 		return cell
 	}
