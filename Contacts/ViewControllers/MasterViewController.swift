@@ -79,11 +79,7 @@ class MasterViewController: UITableViewController
 		
 		let contact = contacts.contactAtIndex(indexPath.row, includeNonImportant: includeNonImportant())
 		cell.contactNameLabel?.text = contact.name
-		
-		var isWeekend = contact.created!.isWeekend()
-		var isDaytime = contact.created!.isBetweenTime()
-		var timeStringTest = "\(contact.created!) weekend \(isWeekend) isDaytime \(isDaytime)"
-		cell.dateTextLabel?.text = timeStringTest
+		cell.dateTextLabel?.text = contact.created!.toHumanisedString()
 		
 		cell.contactMethodOne?.hidden = contact.phone?.count == 0
 		cell.contactMethodTwo?.hidden = contact.email?.count == 0
