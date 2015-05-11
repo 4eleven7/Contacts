@@ -10,6 +10,8 @@ import Foundation
 
 extension NSDate
 {
+	// MARK: Comparisons
+	
 	func isWeekend() -> Bool
 	{
 		let calendar: NSCalendar = NSCalendar.currentCalendar()
@@ -23,4 +25,11 @@ extension NSDate
 		
 		return components.hour > start && components.hour < end
 	}
+	
+	func isSameWeekAsDate(date: NSDate) -> Bool
+	{
+		let calendar: NSCalendar = NSCalendar.currentCalendar()
+		return calendar.isDate(self, equalToDate: date, toUnitGranularity: NSCalendarUnit.CalendarUnitWeekOfYear)
+	}
+	
 }
