@@ -15,12 +15,7 @@ class ContactTableCell: UITableViewCell
 	@IBOutlet var contactMethodOne: UIButton?
 	@IBOutlet var contactMethodTwo: UIButton?
 	
-	var hasPhone: Bool = false {
-		didSet {
-			updateContactMethods()
-		}
-	}
-	var hasEmail: Bool = false {
+	var contactMethods: (hasPhone: Bool, hasEmail: Bool) = (false, false) {
 		didSet {
 			updateContactMethods()
 		}
@@ -28,18 +23,22 @@ class ContactTableCell: UITableViewCell
 	
 	func updateContactMethods()
 	{
-		if hasPhone {
+		contactMethodOne?.hidden = true
+		contactMethodTwo?.hidden = true
+		
+		if contactMethods.hasPhone
+		{
+			contactMethodOne?.hidden = false
 			contactMethodOne?.setTitle("📞", forState: UIControlState.Normal)
-			
-			if hasEmail {
-				contactMethodTwo?.setTitle("✉️", forState: UIControlState.Normal)
-			}
-		}
-		else if hasEmail {
-			contactMethodOne?.setTitle("✉️", forState: UIControlState.Normal)
 		}
 		
-		contactMethodOne?.hidden = !(hasPhone || hasEmail)
-		contactMethodTwo?.hidden = !(hasPhone && hasEmail)
+		if contactMethods.hasEmail
+		{
+			if let button: UIButton? = { if self.contactMethods.hasPhone { return self.contactMethodTwo } else { return self.contactMethodOne } }()
+			{
+				button?.hidden = false
+				button?.setTitle("✉️", forState: UIControlState.Normal)
+			}
+		}
 	}
 }

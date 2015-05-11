@@ -81,8 +81,8 @@ class MasterViewController: UITableViewController
 		cell.contactNameLabel?.text = contact.name
 		cell.dateTextLabel?.text = contact.created!.toHumanisedString()
 		
-		cell.hasPhone = contact.phone?.count != 0
-		cell.hasEmail = contact.email?.count != 0
+		cell.contactMethods = (hasPhone: contact.phone?.count != 0,
+							   hasEmail: contact.email?.count != 0)
 		
 		return cell
 	}
