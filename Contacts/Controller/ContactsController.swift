@@ -16,6 +16,7 @@ class ContactsController
 	
 	var startOfDayTime: Int = 8
 	var endOfDayTime: Int = 18
+	var weekendIsImportant: Bool = true
 	
 	func updateContacts(contacts: [Contact])
 	{
@@ -28,17 +29,29 @@ class ContactsController
 		{
 			if let createdDate = contact.created
 			{
-				let isWeekend = createdDate.isWeekend()
-				let isDaytime = createdDate.isBetweenTime(start: startOfDayTime, end: endOfDayTime)
-				
-				if isWeekend {
+				if isDateWeekend(createdDate) {
 					importantCache.append(contact.id)
 				}
-				else if !isDaytime {
+				
+				if isDateInDaytime(createdDate) == false {
 					importantCache.append(contact.id)
 				}
 			}
 		}
+	}
+	
+	func isDateWeekend(date: NSDate) -> Bool
+	{
+		return weekendIsImportant && date.isWeekend()
+	}
+	
+	func isDateInDaytime(date: NSDate) -> Bool
+	{
+		if startOfDayTime == 0 && endOfDayTime == 0 {
+			return false
+		}
+		
+		return date.isBetweenTime(start: startOfDayTime, end: endOfDayTime)
 	}
 	
 	func numberOfContacts(showNonImportant: Bool = true) -> Int
