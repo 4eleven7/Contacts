@@ -74,4 +74,28 @@ class ContactsController
 		
 		return contacts.first!
 	}
+	
+	// MARK: Filters
+	
+	func setFilters(dayTimeStart: Int = 8, dayTimeEnd: Int = 18, addImportanceToWeekend: Bool = true) -> Bool
+	{
+		var requiresUpdate: Bool = false
+		
+		if startOfDayTime != dayTimeStart {
+			startOfDayTime = dayTimeStart
+			requiresUpdate = true
+		}
+		
+		if endOfDayTime != dayTimeEnd {
+			endOfDayTime = dayTimeEnd
+			requiresUpdate = true
+		}
+		
+		if weekendIsImportant != addImportanceToWeekend {
+			weekendIsImportant = addImportanceToWeekend
+			requiresUpdate = true
+		}
+		
+		return requiresUpdate
+	}
 }
